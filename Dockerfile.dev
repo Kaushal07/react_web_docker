@@ -1,0 +1,17 @@
+FROM node:16-alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+#we can skip copy command if we added volume mapping in compose file, 
+#copying is not required as we are mapping there through ref
+
+RUN chown -R node /app/node_modules
+
+USER node
+
+CMD ["npm", "run", "start"]
