@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t kaushal/react_web_docker -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true kaushal/react_web_docker npm run test
