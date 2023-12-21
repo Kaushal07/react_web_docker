@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true kaushal/react_web_docker npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: 
+  env: "Dockerwebreact-env"
+  bucket_name: elasticbeanstalk-ap-south-1-747399956029
+  bucket_path: Dockerwebreact
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
